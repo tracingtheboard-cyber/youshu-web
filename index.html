@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有数 YouShu · AI 企业服务</title>
+  <meta name="description" content="有数 - 新加坡华人中小企业的 AI 企业服务平台。AI 记账、公司秘书、报税，一站搞定。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --bg-card: #111827;
+      --border: #1e293b;
+      --text: #e2e8f0;
+      --text-dim: #64748b;
+      --accent: #38bdf8;
+      --accent2: #34d399;
+      --gradient: linear-gradient(135deg, #38bdf8, #34d399);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 14, 23, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    }
+
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 32px; }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Hero ────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-en {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--accent);
+      letter-spacing: 6px;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--text-dim);
+      max-width: 500px;
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--gradient);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.3);
+    }
+
+    /* ── Section ────────────────────────────────── */
+    section {
+      padding: 100px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Products ────────────────────────────────── */
+    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .product-card:hover::before { opacity: 1; }
+
+    .product-icon { font-size: 40px; margin-bottom: 16px; }
+
+    .product-card h3 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .product-card .en-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .product-status {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-live { background: rgba(52, 211, 153, 0.1); color: var(--accent2); border: 1px solid rgba(52,211,153,0.3); }
+    .status-ready { background: rgba(56, 189, 248, 0.1); color: var(--accent); border: 1px solid rgba(56,189,248,0.3); }
+    .status-plan { background: rgba(100, 116, 139, 0.1); color: var(--text-dim); border: 1px solid rgba(100,116,139,0.3); }
+
+    /* ── How ────────────────────────────────────── */
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    .how-step {
+      text-align: center;
+      padding: 32px 20px;
+    }
+
+    .how-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 auto 16px;
+    }
+
+    .how-step h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .how-step p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── Advantage ─────────────────────────────── */
+    .adv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+    .adv-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .adv-icon { font-size: 28px; flex-shrink: 0; }
+
+    .adv-item h4 { font-size: 15px; margin-bottom: 4px; }
+
+    .adv-item p { font-size: 13px; color: var(--text-dim); }
+
+    /* ── Footer ────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .footer-brand span { color: var(--accent); }
+
+    .footer-info {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      line-height: 1.8;
+    }
+
+    .footer-info a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: #334155;
+      margin-top: 32px;
+    }
+
+    /* ── Mobile ────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .products, .how-grid, .adv-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 48px; letter-spacing: -1px; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">有<span>数</span></div>
+    <div class="nav-links">
+      <a href="#products">产品</a>
+      <a href="#how">怎么用</a>
+      <a href="#why">为什么选我们</a>
+      <a href="#contact">联系</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">🇸🇬 新加坡华人企业服务</div>
+    <h1>让每一个老板<br>心中有<span>数</span></h1>
+    <div class="hero-en">YOUSHU</div>
+    <p>AI 记账 · 公司秘书 · 报税<br>发条消息，全部搞定</p>
+    <a href="https://t.me/zhangzaisg_bot" class="hero-cta" target="_blank">
+      立即体验账仔 →
+    </a>
+  </section>
+
+  <!-- Products -->
+  <section id="products">
+    <div class="section-label">产品矩阵</div>
+    <div class="section-title">三个仔，一站搞定</div>
+    <div class="section-desc">每一个产品都是 AI + 真人会计师的组合，让你放心。</div>
+
+    <div class="products">
+      <div class="product-card">
+        <div class="product-icon">📒</div>
+        <h3>账仔</h3>
+        <div class="en-name">ZHANGZAI</div>
+        <p>拍收据发消息，AI 自动识别入账。每笔交易经 AI 会计实时复核，月底自动出报告。</p>
+        <div class="product-status status-live">● 已上线</div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">📋</div>
+        <h3>秘书仔</h3>
+        <div class="en-name">MISHUZAI</div>
+        <p>公司注册、年度申报、决议起草、电子签名。AI 准备文件，专业秘书审核提交。</p>
+        <div class="product-status status-ready">● 已就绪</div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🧾</div>
+        <h3>税仔</h3>
+        <div class="en-name">SHUIZAI</div>
+        <p>基于全年账务数据，自动生成 GST 报表和 IRAS 年度申报。会计师最终复核签字。</p>
+        <div class="product-status status-plan">○ 即将上线</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How -->
+  <section id="how">
+    <div class="section-label">怎么用</div>
+    <div class="section-title">三步开始，零学习成本</div>
+    <div class="section-desc">不需要安装 App，不需要注册账号，不需要学习新软件。</div>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <h4>扫码加账仔</h4>
+        <p>WhatsApp 或 Telegram<br>搜索即用</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <h4>发收据照片</h4>
+        <p>或直接打字<br>"今天卖了 3800"</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <h4>AI 自动记账</h4>
+        <p>识别金额、分类入账<br>月底自动出报告</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section id="why">
+    <div class="section-label">为什么选有数</div>
+    <div class="section-title">不一样的企业服务</div>
+    <div class="section-desc"></div>
+
+    <div class="adv-grid">
+      <div class="adv-item">
+        <div class="adv-icon">🇨🇳</div>
+        <div>
+          <h4>中文优先</h4>
+          <p>专为华人小生意设计，不用看英文界面</p>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon">💬</div>
+        <div>
+          <h4>消息就是入口</h4>
+          <p>用你每天都在用的 WhatsApp，零学习成本</p>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon">🤖</div>
+        <div>
+          <h4>AI 效率 + 人工把关</h4>
+          <p>AI 处理 80% 重复工作，会计师复核 20% 关键数据</p>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon">🇸🇬</div>
+        <div>
+          <h4>新加坡本地合规</h4>
+          <p>符合 GST、IRAS、ACRA 要求，数据安全有保障</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact">
+    <div class="footer-brand">有<span>数</span></div>
+    <div class="footer-info">
+      有数 YouShu Pte Ltd<br>
+      AI + 人工协作 · 服务新加坡中小企业<br><br>
+      📧 <a href="mailto:sg.wangchuan@gmail.com">sg.wangchuan@gmail.com</a><br>
+      🤖 <a href="https://t.me/zhangzaisg_bot" target="_blank">@zhangzaisg_bot</a>
+    </div>
+    <div class="footer-copy">© 2026 YouShu Pte Ltd. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
