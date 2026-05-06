@@ -45,8 +45,17 @@
     }
 
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-size: 22px;
       font-weight: 700;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      width: auto;
+      border-radius: 8px;
     }
 
     .nav-logo span { color: var(--accent); }
@@ -212,7 +221,16 @@
 
     .product-card:hover::before { opacity: 1; }
 
-    .product-icon { font-size: 40px; margin-bottom: 16px; }
+    .product-icon { 
+      margin-bottom: 16px;
+    }
+    
+    .product-icon img {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
 
     .product-card h3 {
       font-size: 24px;
@@ -345,7 +363,10 @@
 
   <!-- Nav -->
   <nav>
-    <div class="nav-logo">有<span>数</span></div>
+    <div class="nav-logo">
+      <img src="logo_youshu.png" alt="有数 Logo">
+      <div>有<span>数</span></div>
+    </div>
     <div class="nav-links">
       <a href="#products">产品</a>
       <a href="#how">怎么用</a>
@@ -373,7 +394,7 @@
 
     <div class="products">
       <div class="product-card">
-        <div class="product-icon">📒</div>
+        <div class="product-icon"><img src="logo_zhangzai.png" alt="账仔 Logo"></div>
         <h3>账仔</h3>
         <div class="en-name">ZHANGZAI</div>
         <p>拍收据发消息，AI 自动识别入账。每笔交易经 AI 会计实时复核，月底自动出报告。</p>
@@ -381,7 +402,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-icon">📋</div>
+        <div class="product-icon"><img src="logo_mishuzai.png" alt="秘书仔 Logo"></div>
         <h3>秘书仔</h3>
         <div class="en-name">MISHUZAI</div>
         <p>公司注册、年度申报、决议起草、电子签名。AI 准备文件，专业秘书审核提交。</p>
@@ -389,7 +410,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-icon">🧾</div>
+        <div class="product-icon"><img src="logo_shuizai.png" alt="税仔 Logo"></div>
         <h3>税仔</h3>
         <div class="en-name">SHUIZAI</div>
         <p>基于全年账务数据，自动生成 GST 报表和 IRAS 年度申报。会计师最终复核签字。</p>
